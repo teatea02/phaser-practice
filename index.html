@@ -1,8 +1,8 @@
 <!doctype html> 
-<html lang="en"> 
+<html lang="ko"> 
 <head> 
     <meta charset="UTF-8" />
-    <title>Making your first Phaser 3 Game</title>
+    <title>My first Phaser 3 Game</title>
     <script src="//cdn.jsdelivr.net/npm/phaser@3.11.0/dist/phaser.js"></script>
     <style type="text/css">
         body {
@@ -28,11 +28,19 @@
     var game = new Phaser.Game(config);
 
     function preload() {
+        this.load.image('sky', 'assets/sky.png');
+        this.load.image('ground', 'assets/ground.png');
+        this.load.image('star', 'assets/star.png');
+        this.load.image('bomb', 'assets/bomb.png');
 
+        this.load.spritesheet('dude', 'assets/dude.png', {frameWidth: 32, frameHeight: 48});
     };
 
     function create() {
-
+        // Both Codes are the Same!
+        this.add.image(400, 300, 'sky');
+        // this.add.image(0, 0, 'sky').setOrigin(0, 0);
+        this.add.image(400, 300, 'star');
     };
 
     function update() {
