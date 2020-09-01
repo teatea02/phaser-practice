@@ -44,7 +44,7 @@ function create() {
 
     player = this.physics.add.sprite(100, 450, 'dude');
 
-    player.setBounce(0.2);
+    // player.setBounce(0.2);
     player.setCollideWorldBounds(true);
 
     // changing gravity
@@ -73,6 +73,19 @@ function create() {
         frameRate: 10,
         repeat: -1
     });
+
+    stars = this.physics.add.group({
+        key: 'star',
+        repeat: 11,
+        setXY: { x: 12, y: 0, stepX: 70}
+    });
+
+    stars.children.iterate(function (child) {
+        child.setBounceY(Phaser.Math.FloatBetween(0.4, 0.8));
+    });
+    
+    this.physics.add.collider(stars, platforms);
+    this.physics.add.overlap(player, stars, collectStar, null, this);
 };
 
 function update() {
@@ -99,4 +112,9 @@ function update() {
     {
         player.setVelocityY(-330);
     }
+};
+
+function collectStar (player, star)
+{
+    star.disableBody(true, true);
 };
